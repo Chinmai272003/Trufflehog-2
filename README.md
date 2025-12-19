@@ -1,9 +1,21 @@
-print("Hello Secure World")
+import os
 
-AWS_ACCESS_KEY_ID = "AKIA123456789TESTKEY"
-AWS_SECRET_ACCESS_KEY = "wJalrXUtnFEMI/K7MDENG/bPxRfiCYTESTKEY"
+def main():
+    print("Hello Secure World")
 
-API_ENDPOINT = "https://api.example.com/v1/data"
+     Read credentials from environment variables
+    aws_access_key = os.getenv("AWS_ACCESS_KEY_ID")
+    aws_secret_key = os.getenv("AWS_SECRET_ACCESS_KEY")
+    api_endpoint = os.getenv("API_ENDPOINT", "https://api.example.com/v1/data")
 
-print("AWS Key:", AWS_ACCESS_KEY_ID)
-print("API Endpoint:", API_ENDPOINT)
+    if not aws_access_key or not aws_secret_key:
+        print("AWS credentials are not set.")
+        return
+
+    print("AWS credentials loaded successfully")
+    print("API Endpoint:", api_endpoint)
+
+if __name__ == "__main__":
+    main()
+
+
